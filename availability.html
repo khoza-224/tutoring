@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Availability | Tutoring System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="dashboard.php">Dashboard</a>
+      <a href="availability.php">My Availability</a>
+      <a href="tutor_sessions.php">My Sessions</a>
+      <a href="logout.php">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Manage My Availability</h1>
+
+    <!-- Add a new slot -->
+    <form id="availabilityForm" action="availability.php" method="post">
+      <input type="hidden" name="action" value="add">
+
+      <fieldset>
+        <legend>Add an availability slot</legend>
+
+        <label for="day_of_week">Day of the week</label>
+        <select id="day_of_week" name="day_of_week" required>
+          <option value="" disabled selected>Select a day</option>
+          <option>Monday</option>
+          <option>Tuesday</option>
+          <option>Wednesday</option>
+          <option>Thursday</option>
+          <option>Friday</option>
+        </select>
+
+        <div class="row">
+          <div>
+            <label for="start_time">From</label>
+            <input type="time" id="start_time" name="start_time"
+                   required min="08:00" max="17:00" step="1800">
+          </div>
+          <div>
+            <label for="end_time">To</label>
+            <input type="time" id="end_time" name="end_time"
+                   required min="09:00" max="18:00" step="1800">
+          </div>
+        </div>
+      </fieldset>
+
+      <button type="submit">Save Slot</button>
+    </form>
+
+    <!-- Remove an existing slot -->
+    <form id="deleteSlotForm" action="availability.php" method="post">
+      <input type="hidden" name="action" value="delete">
+      <fieldset>
+        <legend>Remove a slot</legend>
+        <label for="availability_id">Slot number</label>
+        <input type="number" id="availability_id" name="availability_id"
+               required min="1" step="1" placeholder="e.g. 3">
+        <small>The slot numbers are shown on the <a href="availability.php">My Availability</a> page.</small>
+      </fieldset>
+      <button type="submit" class="danger">Remove Slot</button>
+    </form>
+  </main>
+
+  <script src="validation.js"></script>
+</body>
+</html>

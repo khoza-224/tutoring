@@ -1,0 +1,81 @@
+* { box-sizing: border-box; }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f3f6fb;
+  margin: 0;
+  color: #1f2937;
+}
+header {
+  background: #1e3a8a;
+  color: #fff;
+  padding: 14px 24px;
+}
+header nav a {
+  color: #fff;
+  margin-right: 16px;
+  text-decoration: none;
+}
+header nav a:hover { text-decoration: underline; }
+main {
+  max-width: 640px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+main.wide { max-width: 1000px; }
+form, fieldset {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+legend { font-weight: bold; padding: 0 8px; color: #1e3a8a; }
+label { display: block; margin: 12px 0 4px; font-weight: 600; }
+input, select, textarea {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid #9ca3af;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid #3b82f6; }
+input:invalid:not(:placeholder-shown) { border-color: #dc2626; }
+input:valid:not(:placeholder-shown) { border-color: #16a34a; }
+small { color: #6b7280; display: block; margin-top: 3px; }
+button {
+  margin-top: 18px;
+  background: #1e3a8a;
+  color: #fff;
+  border: 0;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+button:hover { background: #1d4ed8; }
+button.danger { background: #b91c1c; }
+.row { display: flex; gap: 12px; }
+.row > div { flex: 1; }
+
+/* Messages and validation */
+.error { color: #b91c1c; font-size: 0.9rem; display: block; }
+.ok { color: #15803d; }
+.has-error { border-color: #dc2626 !important; background: #fef2f2; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; background: #fff; margin-bottom: 24px; }
+th, td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; font-size: 0.9rem; }
+th { background: #e5edff; }
+table form { background: none; border: 0; padding: 0; margin: 0; display: inline; }
+table button { margin: 0; padding: 4px 10px; font-size: 0.85rem; }
+
+/* Session planner */
+.toolbar { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 12px; }
+.toolbar > div { flex: 1; min-width: 150px; }
+.week { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 24px; }
+.day { background: #fff; border: 1px solid #d1d5db; border-radius: 8px; padding: 8px; min-height: 110px; }
+.day h3 { margin: 0 0 6px; font-size: 0.95rem; color: #1e3a8a; }
+.slot { background: #e5edff; border-radius: 6px; padding: 5px 7px; margin-bottom: 6px; font-size: 0.85rem; }
+.slot.completed { background: #dcfce7; }
+.slot.requested { background: #fef9c3; }
+@media (max-width: 800px) { .week { grid-template-columns: 1fr; } }

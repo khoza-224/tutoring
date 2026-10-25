@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session Planner | Tutoring System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="dashboard.php">Dashboard</a>
+      <a href="schedule.html">Session Planner</a>
+      <a href="logout.php">Logout</a>
+    </nav>
+  </header>
+
+  <main class="wide">
+    <h1>Tutoring Session Planner</h1>
+    <p id="summary" aria-live="polite"></p>
+
+    <div class="toolbar">
+      <div>
+        <label for="statusFilter">Status</label>
+        <select id="statusFilter">
+          <option value="all">All</option>
+          <option value="requested">Requested</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="completed">Completed</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+      </div>
+      <div>
+        <label for="sortBy">Sort by</label>
+        <select id="sortBy">
+          <option value="date">Date and time</option>
+          <option value="tutor">Tutor</option>
+          <option value="status">Status</option>
+        </select>
+      </div>
+      <div>
+        <label for="search">Search</label>
+        <input type="search" id="search" placeholder="Tutor, programme or date" maxlength="50">
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>ID</th><th>Programme</th><th>Tutor</th><th>Date</th><th>Time</th><th>Status</th><th>Action</th></tr>
+      </thead>
+      <tbody id="bookingBody"></tbody>
+    </table>
+
+    <h2>Weekly schedule</h2>
+    <div class="toolbar">
+      <div><button type="button" id="prevWeek">&larr; Previous week</button></div>
+      <div><strong id="weekLabel"></strong></div>
+      <div><button type="button" id="nextWeek">Next week &rarr;</button></div>
+    </div>
+    <div class="week" id="weekGrid"></div>
+
+    <h2>Tutor availability</h2>
+    <table>
+      <thead><tr><th>Tutor</th><th>Programmes</th><th>Available (Mon-Fri)</th></tr></thead>
+      <tbody id="availabilityBody"></tbody>
+    </table>
+
+    <form id="plannerForm">
+      <fieldset>
+        <legend>Add a session</legend>
+
+        <div class="row">
+          <div>
+            <label for="programme_id">Programme</label>
+            <select id="programme_id"><option value="">Select a programme</option></select>
+          </div>
+          <div>
+            <label for="tutor_id">Tutor</label>
+            <select id="tutor_id"><option value="">Select a tutor</option></select>
+          </div>
+        </div>
+
+        <label for="session_date">Date (Monday to Friday)</label>
+        <input type="date" id="session_date">
+
+        <div class="row">
+          <div>
+            <label for="start_time">Start time</label>
+            <input type="time" id="start_time" step="1800">
+          </div>
+          <div>
+            <label for="end_time">End time</label>
+            <input type="time" id="end_time" step="1800">
+          </div>
+        </div>
+      </fieldset>
+      <button type="submit">Add Session</button>
+      <p id="plannerMsg" class="ok" aria-live="polite"></p>
+    </form>
+  </main>
+
+  <script src="validation.js"></script>
+  <script src="schedule.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programme Payment | Tutoring System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="dashboard.php">Dashboard</a>
+      <a href="payment.html">Programme &amp; Payment</a>
+      <a href="booking.php">Book a Session</a>
+      <a href="logout.php">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Select Programme &amp; Pay</h1>
+    <form id="paymentForm" action="payment.php" method="post">
+
+      <fieldset>
+        <legend>Programme</legend>
+        <label for="programme_id">Choose a programme</label>
+        <select id="programme_id" name="programme_id" required>
+          <option value="" disabled selected>Select a programme</option>
+          <option value="1" data-fee="1500.00">Mathematics - R1500.00</option>
+          <option value="2" data-fee="2200.00">Data Science - R2200.00</option>
+        </select>
+
+        <label for="amount">Amount due (R)</label>
+        <input type="number" id="amount" name="amount"
+               min="1" step="0.01" required readonly
+               placeholder="Select a programme first">
+        <small>The server always uses the official fee from the database.</small>
+      </fieldset>
+
+      <fieldset>
+        <legend>Payment details</legend>
+
+        <label for="payment_method">Payment method</label>
+        <select id="payment_method" name="payment_method" required>
+          <option value="" disabled selected>Select a method</option>
+          <option value="Card">Credit / Debit card</option>
+          <option value="EFT">EFT</option>
+        </select>
+
+        <label for="card_name">Name on card</label>
+        <input type="text" id="card_name" name="card_name"
+               required maxlength="100" autocomplete="cc-name"
+               pattern="[A-Za-z' \-]+" title="Letters and spaces only">
+
+        <label for="card_number">Card number</label>
+        <input type="text" id="card_number" name="card_number"
+               required inputmode="numeric" autocomplete="cc-number"
+               pattern="[0-9]{13,19}" maxlength="19"
+               title="13 to 19 digits, numbers only"
+               placeholder="4111111111111111">
+
+        <div class="row">
+          <div>
+            <label for="card_expiry">Expiry</label>
+            <input type="month" id="card_expiry" name="card_expiry"
+                   required min="2026-10" autocomplete="cc-exp">
+          </div>
+          <div>
+            <label for="card_cvv">CVV</label>
+            <input type="password" id="card_cvv" name="card_cvv"
+                   required inputmode="numeric" autocomplete="cc-csc"
+                   pattern="[0-9]{3,4}" maxlength="4"
+                   title="3 or 4 digits">
+          </div>
+        </div>
+      </fieldset>
+
+      <button type="submit">Pay &amp; Enrol</button>
+    </form>
+  </main>
+
+  <script>
+    // Fill in the fee automatically when a programme is chosen
+    document.getElementById('programme_id').addEventListener('change', function () {
+      document.getElementById('amount').value =
+        this.options[this.selectedIndex].dataset.fee;
+    });
+  </script>
+  <script src="validation.js"></script>
+</body>
+</html>
